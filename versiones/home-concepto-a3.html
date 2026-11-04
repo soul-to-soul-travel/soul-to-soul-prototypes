@@ -14398,7 +14398,7 @@ const FAQS = [{
   a: t('Si la vida moderna te tiene ocupado, distraído o desconectado, y lo que buscas es sentir un lugar más que verlo todo, te vas a sentir en casa con nosotros. Si buscas otro tipo de viaje, con más lugares y más ritmo, también es una buena forma de viajar; solo que no es la que diseñamos, y preferimos decírtelo ahora que decepcionarte después.', 'If modern life has left you busy, distracted or disconnected, and what you\'re after is to feel a place rather than see all of it, you\'ll be at home with us. If you\'re looking for a different kind of trip, more places, a faster pace, that\'s a good way to travel too; it\'s just not the one we design, and we\'d rather tell you now than disappoint you later.')
 }];
 function FAQ() {
-  const [open, setOpen] = useState([0]);
+  const [open, setOpen] = useState([]);   // all closed on load (client, 2026-11-04)
   const toggle = i => setOpen(o => o.includes(i) ? o.filter(x => x !== i) : [...o, i]);
   return /*#__PURE__*/React.createElement("section", {
     className: "sec on-coconut faq",
