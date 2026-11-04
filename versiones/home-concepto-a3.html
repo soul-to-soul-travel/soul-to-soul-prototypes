@@ -872,7 +872,7 @@ html[lang="es"] .who .hd__title { font-size: clamp(30px, 3.1vw, 44px); }
 .hwt__cue svg { animation: hwt-cue 1.8s ease-in-out infinite; }
 @keyframes hwt-cue { 0%, 100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(5px); opacity: 1; } }
 @media (prefers-reduced-motion: reduce) { .hwt__cue svg { animation: none; } }
-.pillars { list-style: none; margin: 0 auto 56px; padding: 0; max-width: 1280px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
+.pillars { list-style: none; margin: 0 auto 72px; padding: 0; max-width: 1280px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 48px); }
 .pillar { text-align: center; opacity: 0; transform: translateY(36px); transition: opacity .9s ease, transform 1.3s var(--ease-out); }
 .pillar.is-in { opacity: 1; transform: none; }
 .pillar img { display: block; width: 88px; height: 88px; object-fit: contain; margin: 0 auto 24px; }
@@ -884,7 +884,7 @@ html[lang="es"] .who .hd__title { font-size: clamp(30px, 3.1vw, 44px); }
   .hwt { height: 280vh; }
   .hwt__stage { position: sticky; top: 0; height: 100dvh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding-block: calc(var(--hdr-h) + var(--hdr-top)) 0; box-sizing: border-box; }
   .hwt .hd { margin-bottom: clamp(32px, 6vh, 64px); }
-  .hwt .pillars { margin-bottom: clamp(28px, 5vh, 56px); }
+  .hwt .pillars { margin-bottom: clamp(56px, 10vh, 96px); }   /* more air before the CTA (client, 2026-11-04) */
 }
 @media (max-width: 900px) {
   .pillars { grid-template-columns: 1fr; gap: 52px; }
@@ -12891,7 +12891,7 @@ const BIMG = p => S2S_ASSET('BIMG', p);
 const NAV = [[t('Por qué Colombia', 'Why Colombia'), '#why'], [t('Destinos', 'Destinations'), '#destinations'], [t('Inspiración', 'Inspiration'), '#inspiration'], [t('Nosotros', 'About Us'), '#about']];
 const QUIZ = '#quiz'; // archetype quiz (03-paginas/10-quiz-arquetipos), not built yet
 const KS_420 = '#420'; // the 420 version of the journeys: no page yet (see the feedback README)
-const ENQUIRE = t('Empecemos a conversar', 'Start the conversation');
+const ENQUIRE = t('Planea tu viaje', 'Plan your trip');
 
 /* ------------------------------------------------------------- hooks */
 function useMedia(q) {
