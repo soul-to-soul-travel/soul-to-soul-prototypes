@@ -861,7 +861,7 @@ html[lang="es"] .who .hd__title { font-size: clamp(30px, 3.1vw, 44px); }
    rises as it comes into view. The stage holds the padding and the paper, not
    the section: the palm hangs from the stage, so it starts at the very top,
    and it multiplies only against what is inside the stage. */
-.hwt { padding-block: 0; }
+.hwt { padding-block: 0 calc(var(--py) * .6); }   /* a breath of light paper after the CTA, before the coconut section (client, 2026-11-04) */
 .hwt__stage { padding-block: calc(var(--py) * .45) var(--py); background: var(--light); }
 .hwt__stage > .wrap { position: relative; z-index: 1; }
 /* Scroll cue (client, 2026-11-02): shows while the stage is pinned and pillars
@@ -12934,8 +12934,10 @@ function useScrollStep(ref, n, on) {
     if (!on) return;
     const f = () => {
       const r = ref.current.getBoundingClientRect();
-      const p = -r.top / (r.height - innerHeight);
-      set(Math.min(n, Math.max(0, Math.ceil(p * n * 1.2)))); // the last step arrives early, so it holds a while
+      // Start counting while the section is still rising: the first pillar shows once the
+      // heading is in view (section top at ~45% of the screen), not only once it pins (client, 2026-11-04).
+      const p = (0.45 * innerHeight - r.top) / (r.height - innerHeight);
+      set(Math.min(n, Math.max(0, Math.ceil(p * n))));
     };
     f();
     addEventListener('scroll', f, {
