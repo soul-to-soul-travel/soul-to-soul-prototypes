@@ -540,6 +540,9 @@ button { font: inherit; color: inherit; }
    headings balance their lines; everything else avoids a last line of one word. */
 body { text-wrap: pretty; }
 h1, h2, h3, h4, blockquote { text-wrap: balance; }
+/* On a phone, Safari's 'pretty' spreads the adjustment over the whole paragraph and
+   leaves a ragged right edge with big gaps (client, iPhone, 2026-11-04): plain wrapping there. */
+@media (max-width: 900px) { body { text-wrap: auto; } h1, h2, h3, h4, blockquote { text-wrap: balance; } }
 
 .wrap { max-width: var(--content-max); margin: 0 auto; padding-inline: var(--gx); box-sizing: border-box; }
 .sec { position: relative; isolation: isolate; padding-block: calc(var(--py) * .45) var(--py); }   /* the air sits at the end of a section, not its start (client, 2026-11-02) */
@@ -788,9 +791,11 @@ button.link { border: 0; padding-inline: 0; cursor: pointer; }
 .film__frame video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 0 0; }
 @media (max-width: 900px) {
   .film { --thin: 8px; }
-  .film__frame { --closed: 4 / 3; --r0: var(--radius-xl); aspect-ratio: auto; height: calc(100svh - 2 * var(--thin)); }
+  /* Phone: the film stays 16:9 at its natural height, no portrait crop and no reserved
+     full-screen hole under it; the scroll only slides the thin margins open (client, 2026-11-04). */
+  .film__frame { --closed: 16 / 9; --r0: var(--radius-xl); aspect-ratio: 16 / 9; height: auto; max-height: none; }
 }
-@media (max-width: 600px) { .film__frame { --closed: 4 / 5; } }
+@media (max-width: 600px) { .film__frame { --closed: 16 / 9; } }
 /* Watch the film: whole, from the start, with sound, full screen. It rides the
    bottom-left corner of the window as it opens. */
 .film__play { position: absolute; z-index: 1; left: calc(var(--wl, 0px) + 24px); bottom: calc(var(--wb, 0px) + 24px); display: inline-flex; align-items: center; gap: 10px;
@@ -13541,11 +13546,11 @@ function Who() {
     eyebrow: t('Quiénes somos', 'Who we are')
   }, t('Lejos, como viajeros.', 'Far as travelers.'), /*#__PURE__*/React.createElement("br", null), t('En casa, como anfitriones.', 'Home as hosts.')), /*#__PURE__*/React.createElement("p", {
     className: "who__p"
-  }, t('Todo empezó con un tiquete de ida: sin itinerario, sin fecha de regreso, sin más plan que la próxima comida. Somos Aída y Sebas, dos colombianos que pasamos tres años recorriendo despacio el sudeste asiático, cambiando horarios por presencia, hasta que nuestra forma de viajar nos pareció digna de compartir.', "It started with a one-way ticket: no itinerary, no deadline, no plan beyond the next meal. We're Aída and Sebas, two Colombians who spent three years moving slowly through Southeast Asia, trading schedules for presence, until the way we traveled felt worth sharing.")), /*#__PURE__*/React.createElement("p", {
+  }, t('Todo empezó con un tiquete de ida: sin itinerario, sin fecha de regreso, sin más plan que la próxima comida. Somos Aída y Sebas, dos colombianos que pasamos tres años recorriendo despacio Asia, cambiando horarios por presencia, hasta que nuestra forma de viajar nos pareció digna de compartir.', "It started with a one-way ticket: no itinerary, no deadline, no plan beyond the next meal. We're Aída and Sebas, two Colombians who spent three years moving slowly through Asia, trading schedules for presence, until the way we traveled felt worth sharing.")), /*#__PURE__*/React.createElement("p", {
     className: "who__p"
   }, t('Ese instinto se convirtió en nuestro viaje insignia por Bali, Singapur y Camboya. Durante cinco años, más de 200 viajeros nos confiaron su tiempo, sus expectativas y un viaje al otro lado del mundo. A cambio, nos enseñaron qué hace que un viaje se quede contigo.', 'That instinct became our signature journey through Bali, Singapore, and Cambodia. For five years, more than 200 travelers trusted us with their time, their expectations and a trip to the other side of the world. In return, they taught us what makes a journey stay with you.')), /*#__PURE__*/React.createElement("p", {
     className: "who__p"
-  }, t('Ahora ese oficio vuelve a casa. Colombia es el lugar que mejor conocemos, la tierra donde nacimos y a la que siempre volvemos. Aquí, las lecciones de nuestro primer capítulo se encuentran con un conocimiento de raíz de lo que es el hogar.', 'Now that craft is coming home. Colombia is the place we know best, the land we were born in and always return to. Here, the lessons of our first chapter meet a deep-rooted knowledge of home.'))), /*#__PURE__*/React.createElement("button", {
+  }, t('Ahora ese oficio vuelve a casa. Colombia es el lugar que mejor conocemos; aquí, las lecciones de nuestro primer capítulo se encuentran con un conocimiento de raíz de lo que es el hogar.', 'Now that craft is coming home. Colombia is the place we know best; here, the lessons of our first chapter meet a deep-rooted knowledge of home.'))), /*#__PURE__*/React.createElement("button", {
     className: "who__print",
     onClick: () => setReal(true),
     "aria-label": t('Ver la versión real', 'See the real version')
